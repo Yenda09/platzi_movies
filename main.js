@@ -1,4 +1,5 @@
 const API = `https://api.themoviedb.org/3`;
+const api_key = 'e05cf174db65ea763d3b78b72623ef3b';
 
 async function getTrendingMoviesPreview (){
   const response = await fetch(`${API}/trending/movie/day?api_key=${api_key}`);
