@@ -1,12 +1,21 @@
 searchFormBtn.addEventListener('click', () => {
   location.hash = '#search=';
 });
+searchFormBtn.addEventListener('touchstart', () => {
+  location.hash = '#search=';
+});
 
 trendingBtn.addEventListener('click', () => {
   location.hash = '#trends';
 });
+trendingBtn.addEventListener('touchstart', () => {
+  location.hash = '#trends';
+});
 
 arrowBtn.addEventListener('click', () => {
+  location.hash = '#home';
+})
+arrowBtn.addEventListener('touchstart', () => {
   location.hash = '#home';
 })
 

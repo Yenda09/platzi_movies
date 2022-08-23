@@ -41,6 +41,9 @@ function createdCategories (categories, container){
     categoryTitle.addEventListener('click', () => {
       location.hash = `#category=${category.id}-${category.name}`;
     });
+    categoryTitle.addEventListener('touchstart', () => {
+      location.hash = `#category=${category.id}-${category.name}`;
+    });
 
     categoryContainerPreview.appendChild(categoryTitle);
     container.appendChild(categoryContainerPreview);
