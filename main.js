@@ -8,14 +8,12 @@ const api = axios.create({
   }
 })
 
-async function getTrendingMoviesPreview (){
-  const { data } = await api('/trending/movie/day');
-  const movieArray = data.results;
+// Utils
 
-  const trendingPreviewMovieList = document.querySelector('.trendingPreview-movieList');
-  trendingPreviewMovieList.innerHTML = '';
+function createMovies (movies, container){
+  container.innerHTML = '';
 
-  movieArray.forEach(movie => {
+  movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
 
@@ -25,27 +23,52 @@ async function getTrendingMoviesPreview (){
     moviePreviewImage.setAttribute('alt', movie.title);
 
     movieContainer.appendChild(moviePreviewImage);
-    trendingPreviewMovieList.appendChild(movieContainer);
+    container.appendChild(movieContainer);
   });
+}
+
+function createdCategories (categories, container){
+  container.innerHTML = '';
+
+  categories.forEach(category => {
+    const categoryContainerPreview = document.createElement('div');
+    categoryContainerPreview.classList.add('category-container');
+
+    const categoryTitle = document.createElement('h3');
+    categoryTitle.classList.add('category-title');
+    categoryTitle.setAttribute('id', `id${category.id}`);
+    categoryTitle.innerText = category.name;
+    categoryTitle.addEventListener('click', () => {
+      location.hash = `#category=${category.id}-${category.name}`;
+    });
+
+    categoryContainerPreview.appendChild(categoryTitle);
+    container.appendChild(categoryContainerPreview);
+  });
+}
+
+// API Calls
+async function getTrendingMoviesPreview (){
+  const { data } = await api('/trending/movie/day');
+  const movieArray = data.results;
+
+  createMovies(movieArray, trendingMoviesPreviewList);
 };
 
 async function getCategoriesPreview (){
   const { data } = await api('/genre/movie/list');
   const categoriesArray = data.genres;
 
-  const categoriesPreviewList = document.querySelector('.categoriesPreview-list');
-  categoriesPreviewList.innerHTML = '';
+  createdCategories(categoriesArray, categoriesPreviewList);
+};
 
-  categoriesArray.forEach(category => {
-    const categoryContainerPreview = document.createElement('div');
-    categoryContainerPreview.classList.add('category-container');
+async function getMovieByCategory (id){
+  const { data } = await api('/discover/movie', {
+    params: {
+      with_genres: id
+    }
+  });
+  const movieArray = data.results;
 
-    const categoryTitle = document.createElement('h3');
-    categoryTitle.classList.add('category-title');
-    categoryTitle.setAttribute('id', `id${category.id}`)
-    categoryTitle.innerText = category.name;
-
-    categoryContainerPreview.appendChild(categoryTitle);
-    categoriesPreviewList.appendChild(categoryContainerPreview);
-  })
+  createMovies(movieArray, genericSection);
 };
