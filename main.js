@@ -41,7 +41,7 @@ function createdCategories (categories, container){
     categoryTitle.addEventListener('click', () => {
       location.hash = `#category=${category.id}-${category.name}`;
     });
-    categoryTitle.addEventListener('touchstart', () => {
+    categoryTitle.addEventListener('touchend', () => {
       location.hash = `#category=${category.id}-${category.name}`;
     });
 
@@ -71,6 +71,24 @@ async function getMovieByCategory (id){
       with_genres: id
     }
   });
+  const movieArray = data.results;
+
+  createMovies(movieArray, genericSection);
+};
+
+async function getMoviesBySearch (querySearched){
+  const { data } = await api('/search/movie', {
+    params: {
+      query: querySearched
+    }
+  });
+  const movieArray = data.results;
+
+  createMovies(movieArray, genericSection);
+};
+
+async function getTrendingMovies (){
+  const { data } = await api('/trending/movie/day');
   const movieArray = data.results;
 
   createMovies(movieArray, genericSection);
