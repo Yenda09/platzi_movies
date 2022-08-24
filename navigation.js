@@ -6,35 +6,35 @@ searchFormBtn.addEventListener('click', (e) => {
     location.hash = `#search=${searchFormInput.value}`;
   };
 });
-searchFormBtn.addEventListener('touchend', (e) => {
+/* searchFormBtn.addEventListener('touchend', (e) => {
   if (searchFormInput.value == ''){
     e.preventDefault();
     alertContainer.classList.remove('inactive');
   } else {
     location.hash = `#search=${searchFormInput.value}`;
   };
-});
+}); */
 
 trendingBtn.addEventListener('click', () => {
   location.hash = '#trends';
 });
-trendingBtn.addEventListener('touchend', () => {
+/* trendingBtn.addEventListener('touchend', () => {
   location.hash = '#trends';
-});
+}); */
 
 arrowBtn.addEventListener('click', () => {
   window.history.back();
 });
-arrowBtn.addEventListener('touchend', () => {
+/* arrowBtn.addEventListener('touchend', () => {
   window.history.back();
-});
+}); */
 
 alertButton.addEventListener('click', () => {
   alertContainer.classList.add('inactive');
 });
-alertButton.addEventListener('touchend', () => {
+/* alertButton.addEventListener('touchend', () => {
   alertContainer.classList.add('inactive');
-});
+}); */
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);

@@ -19,9 +19,9 @@ function createMovies (movies, container){
     movieContainer.addEventListener('click', () => {
       location.hash = `#movie=${movie.id}`;
     });
-    movieContainer.addEventListener('touchend', () => {
+    /* movieContainer.addEventListener('touchend', () => {
       location.hash = `#movie=${movie.id}`;
-    });
+    });*/
 
     const moviePreviewImage = document.createElement('img');
     moviePreviewImage.classList.add('movie-img');
@@ -47,9 +47,9 @@ function createCategories (categories, container){
     categoryTitle.addEventListener('click', () => {
       location.hash = `#category=${category.id}-${category.name}`;
     });
-    categoryTitle.addEventListener('touchend', () => {
+    /* categoryTitle.addEventListener('touchend', () => {
       location.hash = `#category=${category.id}-${category.name}`;
-    });
+    }); */
 
     categoryContainerPreview.appendChild(categoryTitle);
     container.appendChild(categoryContainerPreview);
