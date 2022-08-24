@@ -128,6 +128,9 @@ function movieDetailsPage(){
   genericSection.classList.add('inactive');
   movieDetailSection.classList.remove('inactive');
   alertContainer.classList.add('inactive');
+
+  const [_, movieId] = location.hash.split('=');
+  getMovieDetailsById(movieId);
 };
 
 function categoriesPage(){
